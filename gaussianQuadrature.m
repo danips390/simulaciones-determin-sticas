@@ -2,15 +2,15 @@ clear
 clc
 format long
 
-f = @(x) abs(2.*sech(x+exp(1)).*sin(x+exp(0.5))).^2;
-a = -10;
-b = 10;
+f = @(x) exp(x.^2);
+a = -1;
+b = 3;
 
-res = gaussianQuad(f,a,b,35);
+res = gaussianQuad(f,a,b,64);
 disp("resultado cuadratura: "+string(vpa(res)))
 
 syms x
-analitico = vpa(int(abs(2.*sech(x+exp(1)).*sin(x+exp(0.5))).^2,a,b)); % No olvidar cambiar función!!!!!!!!!!
+analitico = vpa(int(exp(x^2),a,b)); % No olvidar cambiar función
 fprintf("resultado analítico: %s \n",string(analitico))
 
 Ea = abs(analitico-res);
